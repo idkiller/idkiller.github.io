@@ -1,2 +1,3 @@
-/public/
-/themes/
+src/public
+src/.asciidoctori
+src/static/media

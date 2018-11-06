@@ -1,0 +1,31 @@
+languageCode = "ko-kr"
+title = "Meat-pie for me"
+baseurl = "https://idkiller.github.io/"
+theme = "cocoa-eh"
+builddrafts = true
+canonifyurls = true
+contentdir = "content"
+layoutdir = "layouts"
+publishdir = "public"
+author = "Pius Lee"
+pygmentsuseclasses = true
+disqusshortname = ""
+pluralizelisttitles = false
+
+[permalinks]
+fixed = ":title/"
+blog = "blog/:slug/"
+
+[params]
+author = "Pius lee"
+cachebuster = true
+dateform = "Jan 4, 2017"
+dateformfull = "Wed Jan 4 2017 15:04:05 MST"
+description = "Experimental blog"
+logofile = "img/logo.png"
+faviconfile = "img/logo.png"
+highlightjs = true
+lang = "en"
+github = "https://github.com/idkiller"
+email = "idkiller@gmail.com"
+latestpostcount = 5

@@ -1,0 +1,37 @@
+language: go
+
+addons:
+  apt:
+    packages:
+      - python-pygments
+
+notifications:
+  email:
+    recipients:
+      - idkiller@gmail.com
+    on_success: always
+    on_failure: always
+
+before_install:
+  - rvm install 2.3.3
+  - gem install asciidoctor
+  - gem install asciidoctor-diagram
+
+install:
+  - which ruby
+  - chmod 755 ./bin/asciidoc
+
+script:
+  - cd src
+  - rm -rf public || exit 0
+  - PATH=../bin hugo
+
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN  # Set in travis-ci.org dashboard, marked secure
+  keep-history: false
+  local-dir: src/public
+  target-branch: master
+  on:
+    branch: hugo

@@ -1,0 +1,21 @@
+div.main .content .markdown figure {
+width: 110%;
+margin-left: -4%;
+}
+div.main .content .markdown img {
+/*
+ * max-width: 110%;
+ * width: 110%;
+ * margin-left: -4%;
+ */
+display: block;
+max-width:100%;
+max-height:658px;
+width:auto;
+height:auto;
+margin: 0 auto;
+}
+div.main .content .markdown pre {
+width: 110%;
+margin-left: -4%;
+}
