@@ -1,0 +1,67 @@
++++
+date = 2018-11-07
+title = "이거 어떻게 한거냐?"
++++
+include::globals.adoc[]
+
+이 Site는 https://asciidoctor.org[AsciiDoctor]와 그 확장인 https://asciidoctor.org/docs/asciidoctor-diagram[Asciidoctor-diagram] 그리고 https://gohugo.io[Hugo] 를 사용해서 Static HTML로 생성 됩니다.
+
+[plantuml]
+----
+[Hugo] ..> [AsciiDoctor] : use
+[AsciiDoctor] - [Asciidoctor-diagram] : extension
+[AsciiDoctor-diagram] ..> [plantuml] : use
+[AsciiDoctor-diagram] ..> [ditaa] : use
+----
+
+https://pages.github.com[Github Pages]를 사용해 hosting 하고 있으며, Update 된 페이지 source로부터 위의 tool들을 사용해 https://travis-ci.org[Travis-CI]에서 Static HTML 을 만들어 냅니다.
+
+[ditaa]
+----
++--------------+         +-------------------------------+
+|Github        +-------> | Travis-CI                     |
+|              |         |                               |
+|              | <-------+  +------+                     |
++-+------------+         |  | Hugo |                     |
+  ^                      |  +-+----+--------+            |
+  |                      |    | Asciidoctor |            |
+  | Push                 |    +--+----------+----------- |
+  |                      |       | Asciidoctor|diagram | |
++-+------------+         |       +---------------------- |
+|Local Machine |         |                               |
++--------------+         +-------------------------------+
+----
+
+Hugo는 https://golang.org[GO]로 만들어진 아주 빠른 static HTML Generator 이지만 빠른것 보다는, 설치 및 사용이 static HTML Generator중 가장 쉽기 때문에 사용하고 있습니다.
+
+Hugo는 페이지 내부에 http://plantuml.com[PlantUML]이나 http://ditaa.sourceforge.net[ditaa] 같은걸 지원하지 않지만, 
+AsciiDoctor를 사용해서 페이지를 만들 수 있게 해주기 때문에, AsciiDoctor의 확장인 AsciiDoctor-Diagram을 사용하면 
+PlantUML과 ditaa를 포함한 여러 방법으로 Diagram을 그릴 수 있게 해주기 때문에, AsciiDoctor를 사용해서 페이지를 만들고 있습니다.
+
+Hugo는 확장자가 adoc, ad 인경우 asciidoctor를 PATH에서 찾아서 문서 generating을 합니다.
+하지만 Asciidoctor 기본 CLI는 Asciidoctor-Diagram을 사용하지 않기 때문에 간단한 Ruby script로 사용할 수 있게 만들어야 합니다.
+
+asciidoctor
+[source,ruby]
+----
+#!/usr/bin/ruby
+
+require 'rubygems'
+
+version = ">= 0.a"
+
+if ARGV.first
+  str = ARGV.first
+  str = str.dup.force_encoding("BINARY") if str.respond_to? :force_encoding
+  if str =~ /\A_(.*)_\z/ and Gem::Version.correct?($1) then
+    version = $1
+    ARGV.shift
+  end
+end
+
+require 'asciidoctor-diagram'
+
+gem 'asciidoctor', version
+load Gem.bin_path('asciidoctor', 'asciidoctor', version)
+----
+

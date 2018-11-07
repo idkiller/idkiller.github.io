@@ -1,6 +1,7 @@
 +++
 date = 2018-11-06
 title = "Learning Tizen NUI 1 - Basic"
+draft = true
 +++
 
 # Learning Tizen NUI 1 - Basic
