@@ -69,3 +69,6 @@ load Gem.bin_path('asciidoctor', 'asciidoctor', version)
 ----
 
 좀더 자세한 travis CI 등과 같은 것은 https://github.com/idkiller/idkiller.github.io[Source] 를 직접 보면 더 편하게 볼 수 있을것 같습니다.
+
+NOTE: 위 스크립트와 Hugo와 AsciiDoctor를 사용하는 방식은 https://github.com/mirkosertic/www_mirkosertic_de[이곳] 에서 가져 왔습니다.
+

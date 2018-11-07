@@ -16,6 +16,7 @@ notifications:
 before_install:
   - rvm install 2.3.3
   - gem install asciidoctor
+  - gem install coderay
   - gem install asciidoctor-diagram
 
 install:
