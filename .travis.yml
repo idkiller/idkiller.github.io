@@ -25,7 +25,7 @@ install:
 script:
   - cd src
   - rm -rf public || exit 0
-  - PATH=../bin hugo
+  - PATH=../bin hugo --minify
 
 deploy:
   provider: pages
