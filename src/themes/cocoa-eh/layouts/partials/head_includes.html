@@ -44,6 +44,12 @@
   <link rel="stylesheet" href="{{ . | absURL }}">
 {{ end }}
 
+{{ if in "adoc ad asciidoc" .File.Ext }}
+  <style type="text/css" media="screen">
+    {{ partial "css/asciidoctor.css" . | safeCSS }}
+  </style>
+{{ end }}
+
 <!-- Icon -->
 <link rel="shortcut icon"
 {{ if .Site.Params.faviconfile }}

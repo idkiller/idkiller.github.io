@@ -26,6 +26,9 @@ logofile = "/img/logo.png"
 faviconfile = "/img/logo.png"
 highlightjs = true
 lang = "en"
-github = "https://github.com/idkiller"
+github = "idkiller/idkiller.github.io"
 email = "idkiller@gmail.com"
 latestpostcount = 5
+extracssfiles = [
+ "font-awesome-4.7.0/css/font-awesome.min.css" 
+]
