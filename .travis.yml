@@ -3,6 +3,7 @@ language: go
 addons:
   apt:
     packages:
+      - graphviz
       - python-pygments
 
 notifications:

@@ -19,15 +19,15 @@ https://pages.github.com[Github Pages]를 사용해 hosting 하고 있으며, Up
 [ditaa]
 ----
 +--------------+         +-------------------------------+
-|Github        +-------> | Travis-CI                     |
+|Github        +-------> | Travis CI                     |
 |              |         |                               |
 |              | <-------+  +------+                     |
 +-+------------+         |  | Hugo |                     |
   ^                      |  +-+----+--------+            |
   |                      |    | Asciidoctor |            |
-  | Push                 |    +--+----------+----------- |
-  |                      |       | Asciidoctor|diagram | |
-+-+------------+         |       +---------------------- |
+  | Push                 |    +--+----------+----------+ |
+  |                      |       | Asciidoctor diagram | |
++-+------------+         |       +---------------------+ |
 |Local Machine |         |                               |
 +--------------+         +-------------------------------+
 ----
@@ -37,6 +37,9 @@ Hugo는 https://golang.org[GO]로 만들어진 아주 빠른 static HTML Generat
 Hugo는 페이지 내부에 http://plantuml.com[PlantUML]이나 http://ditaa.sourceforge.net[ditaa] 같은걸 지원하지 않지만, 
 AsciiDoctor를 사용해서 페이지를 만들 수 있게 해주기 때문에, AsciiDoctor의 확장인 AsciiDoctor-Diagram을 사용하면 
 PlantUML과 ditaa를 포함한 여러 방법으로 Diagram을 그릴 수 있게 해주기 때문에, AsciiDoctor를 사용해서 페이지를 만들고 있습니다.
+
+ditaa로는 쉽게 text와 html 양쪽에서 보기 좋은 diagram을 그릴 수 있지만, ascii diagram을 손으로 그리는건 힘든 일입니다.
+그래서 http://asciiflow.com/[AsciiFlow] 를 사용해 그리고 있습니다.
 
 Hugo는 확장자가 adoc, ad 인경우 asciidoctor를 PATH에서 찾아서 문서 generating을 합니다.
 하지만 Asciidoctor 기본 CLI는 Asciidoctor-Diagram을 사용하지 않기 때문에 간단한 Ruby script로 사용할 수 있게 만들어야 합니다.
@@ -65,3 +68,4 @@ gem 'asciidoctor', version
 load Gem.bin_path('asciidoctor', 'asciidoctor', version)
 ----
 
+좀더 자세한 travis CI 등과 같은 것은 https://github.com/idkiller/idkiller.github.io[Source] 를 직접 보면 더 편하게 볼 수 있을것 같습니다.
